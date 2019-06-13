@@ -26,7 +26,8 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 		//Fuentes 
 		Font fontsup = null;
 		Font fontinf = null;
-		/*
+		
+		
 		InputStream a = getClass().getResourceAsStream("/Recursos/Orbitron-Black.ttf");
 		try {
 			fontsup = Font.createFont(Font.TRUETYPE_FONT, a).deriveFont(20f);
@@ -37,6 +38,7 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		InputStream b = getClass().getResourceAsStream("/Recursos/SpecialElite-Regular.ttf");
 		try {
@@ -49,7 +51,7 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 			e.printStackTrace();
 		}
 
-		*/
+	
 
 		
 		//VENTANA
@@ -61,6 +63,7 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 	
 		//SCROLL SUPERIOR
 	salidaCMD.setEditable(false);
+	salidaCMD.setFont(fontsup);
 	JScrollPane scrollPane = new JScrollPane(salidaCMD);
 	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 	
@@ -70,6 +73,7 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 		//PANEL INFERIOR
 	entradaCMD.addKeyListener(this);
 	PanelInf.add(entradaCMD);
+	entradaCMD.setFont(fontinf);
 	
 		//AGREGACIONES
 	add(PanelSup, BorderLayout.NORTH);

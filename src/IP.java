@@ -23,7 +23,8 @@ public class IP {
 		int estado = 0;
 		String salida = "";
 		Scanner s = new Scanner(linea);
-		do {
+	
+		
 			switch (estado) {
 			case 0:
 
@@ -31,9 +32,14 @@ public class IP {
 
 					token = s.skip("fin|FIN|IP\\s*=\\(").match().group();
 					if (token.equalsIgnoreCase("fin")) {
-						fin = true;
 						
-						break;
+						for (Entry<String, Map<String, Integer>> jugador : usuariosMap.entrySet()) {
+							String clave = jugador.getKey();
+							salida = clave + "  ->  " + usuariosMap.get(clave);
+							estado = 0;
+							break;
+						}
+					
 
 					} else {
 						estado = 1;
@@ -51,6 +57,7 @@ public class IP {
 							"(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)")
 							.match().group();
 					estado = 2;
+					
 				} catch (NoSuchElementException e) {
 					salida = "Se esperaba una IP válida";
 					estado = 0;
@@ -62,11 +69,13 @@ public class IP {
 				try {
 					token = s.skip("\\)\\s*mensaje\\=\\(.*\\)\\s*usuario\\=\\(").match().group();
 					estado = 3;
+					
 				} catch (NoSuchElementException e) {
 					salida = "Se esperaba 'mensaje=' y 'usuario='";
 					estado = 0;
 					
 					break;
+					
 				}
 
 			case 3:
@@ -74,6 +83,7 @@ public class IP {
 				try {
 					usuario = s.skip("\\p{L}+").match().group();
 					estado = 4;
+				
 				} catch (NoSuchElementException e) {
 					salida = "Se esperaba nombre el nombre del usuario";
 					estado = 0;
@@ -109,6 +119,7 @@ public class IP {
 						estado = 0;
 						token = null;
 						s.reset();
+						
 					
 					}
 
@@ -122,13 +133,10 @@ public class IP {
 			}
 
 			
-		} while (!fin);
 
-		s.close();
-		for (Entry<String, Map<String, Integer>> jugador : usuariosMap.entrySet()) {
-			String clave = jugador.getKey();
-			salida = clave + "  ->  " + usuariosMap.get(clave);
-		}
+
+		
+		
 
 		return salida;
 	}

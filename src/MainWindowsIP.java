@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GridLayout;
@@ -66,13 +67,18 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 	salidaCMD.setFont(fontsup);
 	JScrollPane scrollPane = new JScrollPane(salidaCMD);
 	scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	
+	PanelSup.setBackground(new Color(0, 0, 0));
+	salidaCMD.setForeground(new Color (129,255,0));
+	salidaCMD.setBackground(new Color(0, 0, 0));
 	PanelSup.add(scrollPane);
 	
 	
 		//PANEL INFERIOR
 	entradaCMD.addKeyListener(this);
 	PanelInf.add(entradaCMD);
+	PanelInf.setBackground(new Color(0,0,0));
+	entradaCMD.setBackground(new Color (255,0,0));
+	entradaCMD.setForeground(new Color (255,237,0));
 	entradaCMD.setFont(fontinf);
 	
 		//AGREGACIONES
@@ -111,6 +117,7 @@ public class MainWindowsIP extends JFrame implements KeyListener {
 	
 	
 	public void mostrarAyuda() {
+		salidaCMD.append("################# IP - Adrian #################" + System.lineSeparator());
 		salidaCMD.append("Escribe una IP, un mensaje y un nombre de usuario" +  System.lineSeparator());
 		salidaCMD.append("Ejemplo de sintasis" +  System.lineSeparator());
 		salidaCMD.append("IP=(192.168.8.8) mensaje=(hola mundo) usuario=(bocheti)" + System.lineSeparator());
